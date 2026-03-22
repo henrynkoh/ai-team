@@ -1,0 +1,242 @@
+{
+  "date": "2026-03-22",
+  "topic": "2027년에 가장 먼저 사라질 직업 3위 안에 들 만한 직업은? (Which occupations are most likely to disappear first by 2027?)",
+  "topicSource": "llm",
+  "generatedAt": "2026-03-22T06:35:00.000Z",
+  "agentCount": 16,
+  "rounds": 5,
+  "topIdeas": [
+    {
+      "id": "i1",
+      "rank": 1,
+      "title": "중급 데이터 라벨러 / 반복 QA 어노테이터 (Mid-level data labelers)",
+      "compositeScore": 9.4,
+      "scores": {
+        "novelty": 6.8,
+        "feasibility": 9.6,
+        "marketImpact": 9.1,
+        "techDepth": 7.5,
+        "ethicalRisk": 7.2,
+        "mvpSpeed": 9.3
+      }
+    },
+    {
+      "id": "i2",
+      "rank": 2,
+      "title": "단순 콜센터 상담원 (스크립트 기반) (Basic call-center agents)",
+      "compositeScore": 9.0,
+      "scores": {
+        "novelty": 5.9,
+        "feasibility": 9.4,
+        "marketImpact": 8.7,
+        "techDepth": 8.0,
+        "ethicalRisk": 6.8,
+        "mvpSpeed": 9.0
+      }
+    },
+    {
+      "id": "i3",
+      "rank": 3,
+      "title": "중급 회계 장부 정리 (routine bookkeeping)",
+      "compositeScore": 8.7,
+      "scores": {
+        "novelty": 5.4,
+        "feasibility": 9.0,
+        "marketImpact": 8.2,
+        "techDepth": 8.3,
+        "ethicalRisk": 6.0,
+        "mvpSpeed": 8.6
+      }
+    },
+    {
+      "id": "i4",
+      "rank": 4,
+      "title": "기본 그래픽 배너·썸네일 제작 (template-heavy design)",
+      "compositeScore": 8.3,
+      "scores": {
+        "novelty": 7.1,
+        "feasibility": 8.2,
+        "marketImpact": 7.8,
+        "techDepth": 7.6,
+        "ethicalRisk": 5.5,
+        "mvpSpeed": 8.8
+      }
+    },
+    {
+      "id": "i5",
+      "rank": 5,
+      "title": "초급 코드 리뷰·단위 테스트 작성 보조 (junior code review assist)",
+      "compositeScore": 8.0,
+      "scores": {
+        "novelty": 7.8,
+        "feasibility": 7.4,
+        "marketImpact": 8.0,
+        "techDepth": 8.5,
+        "ethicalRisk": 6.5,
+        "mvpSpeed": 7.8
+      }
+    },
+    {
+      "id": "i6",
+      "rank": 6,
+      "title": "표준 의료 코딩 클리커 (ICD 반복 구간)",
+      "compositeScore": 7.6,
+      "scores": {
+        "novelty": 6.2,
+        "feasibility": 7.2,
+        "marketImpact": 8.0,
+        "techDepth": 8.4,
+        "ethicalRisk": 8.8,
+        "mvpSpeed": 6.8
+      }
+    },
+    {
+      "id": "i7",
+      "rank": 7,
+      "title": "법률 문서 1차 스크리닝 (discovery triage)",
+      "compositeScore": 7.3,
+      "scores": {
+        "novelty": 7.0,
+        "feasibility": 7.6,
+        "marketImpact": 7.9,
+        "techDepth": 8.2,
+        "ethicalRisk": 8.5,
+        "mvpSpeed": 7.1
+      }
+    },
+    {
+      "id": "i8",
+      "rank": 8,
+      "title": "단순 현지화·용어집 번역 (glossary-constrained localization)",
+      "compositeScore": 7.0,
+      "scores": {
+        "novelty": 5.6,
+        "feasibility": 8.2,
+        "marketImpact": 6.7,
+        "techDepth": 7.0,
+        "ethicalRisk": 4.8,
+        "mvpSpeed": 8.4
+      }
+    },
+    {
+      "id": "i9",
+      "rank": 9,
+      "title": "리테일 재고·발주 클리커 (seasonal rules)",
+      "compositeScore": 6.7,
+      "scores": {
+        "novelty": 4.9,
+        "feasibility": 8.3,
+        "marketImpact": 6.9,
+        "techDepth": 7.4,
+        "ethicalRisk": 5.4,
+        "mvpSpeed": 8.1
+      }
+    },
+    {
+      "id": "i10",
+      "rank": 10,
+      "title": "입력 위주 데이터 엔트리 (forms / ERP)",
+      "compositeScore": 6.4,
+      "scores": {
+        "novelty": 4.2,
+        "feasibility": 8.8,
+        "marketImpact": 6.5,
+        "techDepth": 6.9,
+        "ethicalRisk": 5.0,
+        "mvpSpeed": 8.9
+      }
+    }
+  ],
+  "heatmapA": {
+    "ideaIds": ["i1", "i2", "i3", "i4", "i5", "i6", "i7", "i8", "i9", "i10"],
+    "criteria": [
+      "novelty",
+      "feasibility",
+      "marketImpact",
+      "techDepth",
+      "ethicalRisk",
+      "mvpSpeed"
+    ],
+    "matrix": [
+      [6.8, 9.6, 9.1, 7.5, 7.2, 9.3],
+      [5.9, 9.4, 8.7, 8.0, 6.8, 9.0],
+      [5.4, 9.0, 8.2, 8.3, 6.0, 8.6],
+      [7.1, 8.2, 7.8, 7.6, 5.5, 8.8],
+      [7.8, 7.4, 8.0, 8.5, 6.5, 7.8],
+      [6.2, 7.2, 8.0, 8.4, 8.8, 6.8],
+      [7.0, 7.6, 7.9, 8.2, 8.5, 7.1],
+      [5.6, 8.2, 6.7, 7.0, 4.8, 8.4],
+      [4.9, 8.3, 6.9, 7.4, 5.4, 8.1],
+      [4.2, 8.8, 6.5, 6.9, 5.0, 8.9]
+    ]
+  },
+  "heatmapB": {
+    "keywords": [
+      "agentic workflow",
+      "voice agent",
+      "automation",
+      "job displacement",
+      "ethics",
+      "OCR",
+      "LLM",
+      "self-evolving",
+      "regulation",
+      "MVP"
+    ],
+    "matrix": [
+      [14, 8, 10, 5, 6, 3, 11, 7, 4, 6],
+      [8, 12, 7, 6, 4, 2, 7, 4, 3, 5],
+      [10, 7, 15, 9, 7, 4, 9, 6, 5, 8],
+      [5, 6, 9, 13, 10, 2, 6, 5, 8, 4],
+      [6, 4, 7, 10, 12, 2, 5, 4, 7, 3],
+      [3, 2, 4, 2, 2, 9, 6, 3, 1, 4],
+      [11, 7, 9, 6, 5, 6, 16, 8, 4, 7],
+      [7, 4, 6, 5, 4, 3, 8, 11, 3, 5],
+      [4, 3, 5, 8, 7, 1, 4, 3, 9, 2],
+      [6, 5, 8, 4, 3, 4, 7, 5, 2, 10]
+    ]
+  },
+  "heatmapC": {
+    "groups": ["VC", "Product", "Engineering", "Ethics", "Futurist"],
+    "ideaIds": ["i1", "i2", "i3", "i4", "i5"],
+    "matrix": [
+      [9.8, 9.2, 8.9, 8.1, 7.6],
+      [8.4, 9.0, 8.3, 8.0, 8.2],
+      [8.9, 8.6, 8.7, 7.9, 8.4],
+      [6.3, 7.0, 6.1, 6.8, 6.6],
+      [8.2, 7.5, 7.8, 8.5, 8.8]
+    ]
+  },
+  "extremePerspectives": [
+    {
+      "group": "VC",
+      "ideaRank": 1,
+      "ideaTitle": "중급 데이터 라벨러 / 반복 QA 어노테이터",
+      "score": 9.8,
+      "reason": "시장 10배 성장 + 합성 데이터 파이프라인 모멘텀."
+    },
+    {
+      "group": "Ethics",
+      "ideaRank": 1,
+      "ideaTitle": "중급 데이터 라벨러 / 반복 QA 어노테이터",
+      "score": 3.2,
+      "reason": "대량 실업·재교육 비용, 지역 편중 우려."
+    },
+    {
+      "group": "Engineering",
+      "ideaRank": 3,
+      "ideaTitle": "중급 회계 장부 정리",
+      "score": 9.1,
+      "reason": "OCR+LLM 조합으로 이미 80% 자동화 가능."
+    }
+  ],
+  "progressVsYesterday": {
+    "newIdeasPercent": 42,
+    "criteriaDeltas": {
+      "novelty": 1.3,
+      "feasibility": 0.4,
+      "marketImpact": 0.6
+    },
+    "trendingKeywords": ["agentic workflow", "self-evolving code", "voice agent"]
+  }
+}
