@@ -1,30 +1,57 @@
-# ai-team
+# ai-team · DebateHeat
 
-This repository contains **DebateHeat** — a Next.js landing page and daily brief dashboard for multi-agent debate results (heatmaps, API, docs).
+Next.js **landing page** and **daily brief** dashboard for multi-agent debate results: heatmaps (A/B/C), radar, group perspectives, and day-over-day progress — one scroll each morning.
+
+**Repository:** [github.com/henrynkoh/ai-team](https://github.com/henrynkoh/ai-team)
 
 ## Quick start
 
 ```bash
-cd debateheat
 npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000). Use **Latest brief** or **Open live brief** for the newest session in `data/sessions/`.
 
-Full documentation: [debateheat/README.md](debateheat/README.md) and [debateheat/docs/](debateheat/docs/).
+Set `NEXT_PUBLIC_GITHUB_REPO` in `.env.local` (see `.env.example`) so the floating **GitHub** button points at this repo.
+
+## Documentation
+
+| Doc | Description |
+|-----|-------------|
+| [docs/QUICKSTART.md](docs/QUICKSTART.md) | ~5 min local run |
+| [docs/TUTORIAL.md](docs/TUTORIAL.md) | Guided lessons |
+| [docs/MANUAL.md](docs/MANUAL.md) | Schema, API, deployment |
+| [docs/README.md](docs/README.md) | Doc index |
+| [docs/marketing/](docs/marketing/) | Social / email copy templates |
 
 ## Deploy on Vercel
 
-This repo is a **monorepo**: the Next.js app is in **`debateheat/`**, not at the repo root.
+The Next.js app is at the **repository root** (`package.json` here), so Vercel should **auto-detect Next.js** — no subfolder setting required.
 
-If you see **`404: NOT_FOUND`** on your `*.vercel.app` URL, Vercel is almost certainly building from the **wrong folder**. Fix it:
+1. Import **henrynkoh/ai-team** (or connect Git).
+2. If you previously set **Root Directory** to `debateheat`, open **Settings → General → Root Directory** and **clear it** (leave default / `.`) **or** set it to **`.`** — then **Redeploy**.
 
-1. Vercel → your project → **Settings** → **General** → **Root Directory** → **`debateheat`**
-2. **Save**, then **Redeploy**
+If you still see `404: NOT_FOUND`, open the latest **Deployment → Build Logs** and fix any build error.
 
-Step-by-step: [docs/DEPLOY_VERCEL.md](docs/DEPLOY_VERCEL.md)
+Details: [docs/DEPLOY_VERCEL.md](docs/DEPLOY_VERCEL.md)
 
-### Optional env
+### Env on Vercel
 
-Set `NEXT_PUBLIC_GITHUB_REPO` to `https://github.com/henrynkoh/ai-team` so the landing page GitHub link matches this repository.
+| Variable | Example value |
+|----------|----------------|
+| `NEXT_PUBLIC_GITHUB_REPO` | `https://github.com/henrynkoh/ai-team` |
+
+## Data & API
+
+- Session files: `data/sessions/YYYY-MM-DD.json`
+- Mock generator: `python3 scripts/generate_brief.py --date YYYY-MM-DD`
+- API: `GET /api/session/YYYY-MM-DD`
+
+## Scripts
+
+| Command | Purpose |
+|--------|---------|
+| `npm run dev` | Dev server |
+| `npm run build` | Production build |
+| `python3 scripts/generate_brief.py` | Mock session JSON |

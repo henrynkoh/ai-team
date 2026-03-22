@@ -11,7 +11,6 @@ Get the dashboard running and see a sample daily brief.
 ## 1. Install and run
 
 ```bash
-cd debateheat
 npm install
 npm run dev
 ```
