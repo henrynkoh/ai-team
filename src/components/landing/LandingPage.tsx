@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import {
   Activity,
   ArrowRight,
@@ -16,27 +17,32 @@ import {
 } from "lucide-react";
 
 import { GitHubFab } from "@/components/landing/GitHubFab";
+import { LandingModal } from "@/components/landing/LandingModal";
 import { SectionNav } from "@/components/landing/SectionNav";
+import { LANDING_MODALS } from "@/lib/landingModalContent";
+
+const cardInteractive =
+  "cursor-pointer text-left transition hover:-translate-y-0.5 hover:border-white/25 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500/80 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 active:scale-[0.99]";
 
 function HeatmapMini({
   title,
   accent,
   rows,
   cols,
+  onOpen,
 }: {
   title: string;
   accent: string;
   rows: number;
   cols: number;
+  onOpen?: () => void;
 }) {
   const cells = Array.from({ length: rows * cols }, (_, i) => {
     const v = 0.3 + (Math.sin(i * 0.7) * 0.5 + 0.5) * 0.65;
     return v;
   });
-  return (
-    <div
-      className={`rounded-2xl border border-white/10 bg-zinc-900/60 p-4 shadow-inner ${accent}`}
-    >
+  const inner = (
+    <>
       <p className="mb-3 text-center text-xs font-semibold uppercase tracking-wide text-zinc-400">
         {title}
       </p>
@@ -49,7 +55,7 @@ function HeatmapMini({
         {cells.map((v, i) => (
           <div
             key={i}
-            className="aspect-square rounded-sm transition hover:scale-110"
+            className="aspect-square rounded-sm transition group-hover:scale-110"
             style={{
               background: `hsl(265 90% ${35 + v * 45}%)`,
               opacity: 0.85 + v * 0.15,
@@ -57,11 +63,37 @@ function HeatmapMini({
           />
         ))}
       </div>
+    </>
+  );
+
+  if (onOpen) {
+    return (
+      <button
+        type="button"
+        onClick={onOpen}
+        className={`group w-full rounded-2xl border border-white/10 bg-zinc-900/60 p-4 shadow-inner ${accent} ${cardInteractive}`}
+      >
+        {inner}
+        <p className="mt-3 text-center text-[11px] font-medium text-violet-400/90">
+          Click for details
+        </p>
+      </button>
+    );
+  }
+
+  return (
+    <div
+      className={`rounded-2xl border border-white/10 bg-zinc-900/60 p-4 shadow-inner ${accent}`}
+    >
+      {inner}
     </div>
   );
 }
 
 export function LandingPage() {
+  const [modalId, setModalId] = useState<string | null>(null);
+  const modalDefinition = modalId ? LANDING_MODALS[modalId] ?? null : null;
+
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-zinc-950 text-zinc-100">
       {/* Ambient mesh */}
@@ -77,6 +109,11 @@ export function LandingPage() {
 
       <SectionNav />
       <GitHubFab />
+      <LandingModal
+        open={Boolean(modalDefinition)}
+        definition={modalDefinition}
+        onClose={() => setModalId(null)}
+      />
 
       <div className="relative lg:pl-56">
         {/* Hero */}
@@ -134,7 +171,11 @@ export function LandingPage() {
               , not many tabs.
             </p>
             <div className="mt-10 grid gap-6 sm:grid-cols-2">
-              <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-900/80 to-zinc-950 p-6 backdrop-blur transition hover:border-violet-500/30">
+              <button
+                type="button"
+                onClick={() => setModalId("overview-json")}
+                className={`rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-900/80 to-zinc-950 p-6 backdrop-blur hover:border-violet-500/40 ${cardInteractive}`}
+              >
                 <Layers className="size-8 text-violet-400" />
                 <h3 className="mt-4 text-lg font-semibold text-white">
                   One JSON per day
@@ -144,8 +185,15 @@ export function LandingPage() {
                   heatmaps, lists, and deltas—no database required for the
                   default setup.
                 </p>
-              </div>
-              <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-900/80 to-zinc-950 p-6 backdrop-blur transition hover:border-fuchsia-500/30">
+                <p className="mt-3 text-xs font-medium text-violet-400/90">
+                  Learn more →
+                </p>
+              </button>
+              <button
+                type="button"
+                onClick={() => setModalId("overview-layout")}
+                className={`rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-900/80 to-zinc-950 p-6 backdrop-blur hover:border-fuchsia-500/40 ${cardInteractive}`}
+              >
                 <Sun className="size-8 text-amber-400" />
                 <h3 className="mt-4 text-lg font-semibold text-white">
                   Morning-first layout
@@ -154,7 +202,10 @@ export function LandingPage() {
                   Topic → ideas → progress → visuals → perspectives. Ordered for
                   a quick scan before your first meeting.
                 </p>
-              </div>
+                <p className="mt-3 text-xs font-medium text-violet-400/90">
+                  Learn more →
+                </p>
+              </button>
             </div>
           </div>
         </section>
@@ -178,41 +229,49 @@ export function LandingPage() {
                   title: "Three heatmaps",
                   desc: "Ideas × criteria, keyword co-occurrence, agent groups × top ideas.",
                   color: "from-violet-500/20 to-transparent",
+                  modalKey: "feature-heatmaps",
                 },
                 {
                   icon: Activity,
                   title: "Radar & scores",
                   desc: "Compare top ideas across novelty, feasibility, impact, ethics, and more.",
                   color: "from-cyan-500/20 to-transparent",
+                  modalKey: "feature-radar",
                 },
                 {
                   icon: GitBranch,
                   title: "Divergent takes",
                   desc: "Surface where VC, Ethics, and Engineering disagree—at a glance.",
                   color: "from-amber-500/20 to-transparent",
+                  modalKey: "feature-divergent",
                 },
                 {
                   icon: Zap,
                   title: "REST JSON API",
                   desc: "GET /api/session/YYYY-MM-DD for bots, Slack, or email digests.",
                   color: "from-emerald-500/20 to-transparent",
+                  modalKey: "feature-api",
                 },
                 {
                   icon: BarChart3,
                   title: "Day-over-day",
                   desc: "Track new ideas, score deltas, and trending keywords vs yesterday.",
                   color: "from-rose-500/20 to-transparent",
+                  modalKey: "feature-dod",
                 },
                 {
                   icon: Flame,
                   title: "Mock generator",
                   desc: "Python script outputs valid sessions—test the UI without LLM spend.",
                   color: "from-orange-500/20 to-transparent",
+                  modalKey: "feature-mock",
                 },
-              ].map(({ icon: Icon, title, desc, color }) => (
-                <div
+              ].map(({ icon: Icon, title, desc, color, modalKey }) => (
+                <button
                   key={title}
-                  className={`group rounded-2xl border border-white/10 bg-gradient-to-br ${color} p-5 backdrop-blur transition hover:-translate-y-0.5 hover:border-white/20 hover:shadow-lg`}
+                  type="button"
+                  onClick={() => setModalId(modalKey)}
+                  className={`group rounded-2xl border border-white/10 bg-gradient-to-br ${color} p-5 backdrop-blur hover:border-white/25 ${cardInteractive}`}
                 >
                   <div className="flex size-11 items-center justify-center rounded-xl bg-white/5 text-violet-300 transition group-hover:bg-violet-500/20 group-hover:text-white">
                     <Icon className="size-5" />
@@ -221,7 +280,10 @@ export function LandingPage() {
                   <p className="mt-2 text-sm leading-relaxed text-zinc-400">
                     {desc}
                   </p>
-                </div>
+                  <p className="mt-3 text-xs font-medium text-violet-400/90">
+                    Details →
+                  </p>
+                </button>
               ))}
             </div>
           </div>
@@ -249,18 +311,21 @@ export function LandingPage() {
                 accent="ring-1 ring-violet-500/20"
                 rows={6}
                 cols={6}
+                onOpen={() => setModalId("viz-a")}
               />
               <HeatmapMini
                 title="B · Keywords"
                 accent="ring-1 ring-fuchsia-500/20"
                 rows={5}
                 cols={5}
+                onOpen={() => setModalId("viz-b")}
               />
               <HeatmapMini
                 title="C · Groups × ideas"
                 accent="ring-1 ring-cyan-500/20"
                 rows={4}
                 cols={5}
+                onOpen={() => setModalId("viz-c")}
               />
             </div>
           </div>
